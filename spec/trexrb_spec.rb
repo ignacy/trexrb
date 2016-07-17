@@ -16,19 +16,19 @@ describe "Trexrb functional spec" do
   end
 
   it "sets key to value" do
-    mock_socket "OK\r\n"
+    mock_socket "+OK\r\n"
 
     expect(client["foo"] = "bar").to eq "bar"
   end
 
   it "gets single key" do
-    mock_socket "bar\r\n"
+    mock_socket "+bar\r\n"
 
     expect(client["foo"]).to eq "bar"
   end
 
   it "lists all available keys" do
-    mock_socket("foo,goo\r\n")
+    mock_socket("+foo,goo\r\n")
 
     expect(client.keys).to eq("foo,goo")
   end
