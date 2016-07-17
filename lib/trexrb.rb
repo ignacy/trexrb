@@ -69,7 +69,13 @@ class Trexrb
     end
 
     def cleaned_data
-      data.rstrip
+      remove_message_type_marker(data).rstrip
+    end
+
+    # RESP http://redis.io/topics/protocol uses first byte of the
+    # response to mark type of the message
+    def remove_message_type_marker(data)
+      data[1..-1]
     end
   end
   private_constant :Response
